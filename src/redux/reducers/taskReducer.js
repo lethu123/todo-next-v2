@@ -11,6 +11,7 @@ const reducer = (state = initialState, action) => {
 			return { ...state, listTask: [action.payload, ...state.listTask] };
 		}
 		case types.DELETE_TASK: {
+			console.log("reruder", action.payload);
 			return {
 				...state,
 				listTask: [

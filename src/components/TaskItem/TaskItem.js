@@ -3,7 +3,7 @@ import { Card, Col, Popconfirm, Row, message } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteTaskAction } from "src/redux/actions/taskAction";
-import tets from "src/containers/Index/style.module.less";
+import styles from "src/containers/Index/style.module.less";
 
 const TaskItem = ({ item, index, setItem, setTask }) => {
 	const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const TaskItem = ({ item, index, setItem, setTask }) => {
 		setTask(item.name);
 	};
 	return (
-		<Card bordered={false} className={tets.card_hover}>
+		<Card bordered={false} className={styles.card_hover}>
 			<Row align="top">
 				<Col className="m-auto" span="22">
 					<span>

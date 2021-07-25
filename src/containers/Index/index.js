@@ -11,14 +11,15 @@ import React, { useEffect, useState } from "react";
 //import PropTypes from "prop-types";
 import { EditOutlined } from "@ant-design/icons";
 
-import tets from "./style.module.less";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	addTaskAction,
 	getTaskAction,
 	updateTaskAction,
-} from "../../redux/actions/taskAction";
-import TaskItem from "../../components/TaskItem/TaskItem";
+} from "src/redux/actions/taskAction";
+import TaskItem from "src/components/TaskItem/TaskItem";
+import { isEmptyObject } from "src/utils/apply-url-filter";
+import styles from "./style.module.less";
 
 const propTypes = {
 	// classes: PropTypes.object.isRequired,
@@ -38,7 +39,9 @@ const Index = (props) => {
 	const listTask = useSelector((state) => state.task.listTask);
 
 	useEffect(() => {
-		if (user) dispatch(getTaskAction(user.id));
+		if (!isEmptyObject(user)) {
+			dispatch(getTaskAction(user.id));
+		}
 	}, [user]);
 
 	const handleSubmit = (e) => {
@@ -58,7 +61,7 @@ const Index = (props) => {
 	};
 
 	return (
-		<div className={tets.main_todo}>
+		<div className={styles.main_todo}>
 			<div
 				className="container pb-5 h-100"
 				style={{ overflowY: "scroll" }}

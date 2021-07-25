@@ -12,7 +12,9 @@ const handler = (req, res) => {
 	const getTask = () => {
 		return res.status(200).json({
 			statusCode: 200,
-			result: tasks.filter((task) => task.userId === req.query.filter),
+			result: req.query.filter
+				? tasks.filter((task) => task.userId === req.query.filter)
+				: tasks,
 		});
 	};
 
@@ -29,7 +31,10 @@ const handler = (req, res) => {
 			task.id = objectId();
 			tasks.push(task);
 			saveData();
-			return res.status(200).json(task);
+			return res.status(200).json({
+				statusCode: 200,
+				result: task,
+			});
 		} catch (error) {
 			return res.status(400).json({ message: error });
 		}
